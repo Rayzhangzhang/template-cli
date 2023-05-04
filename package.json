@@ -1,0 +1,47 @@
+{
+  "name": "create-my-template",
+  "version": "1.0.0",
+  "description": "create-my-template",
+  "type": "module",
+  "bin": {
+    "create-my-template": "build/cli.cjs",
+    "create-my-template-local": "build/cli.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rayzhangzhang/template-cli.git"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "format": "rome format . --write",
+    "build": "zx ./src/scripts/build.mjs",
+    "snapshot": "zx ./src/scripts/snapshot.mjs",
+    "pretest": "run-s build snapshot",
+    "test": "zx ./src/scripts/test.mjs",
+    "prepublishOnly": "zx ./src/scripts/prepublish.mjs"
+  },
+  "lint-staged": {
+    "*.{ts,cjs,mjs}": [
+      "rome format --write"
+    ]
+  },
+  "author": "ray",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rayzhangzhang/template-cli/issues"
+  },
+  "homepage": "https://github.com/Rayzhangzhang/template-cli#readme",
+  "devDependencies": {
+    "@tsconfig/node18": "^2.0.0",
+    "esbuild": "^0.17.18",
+    "esbuild-plugin-license": "^1.2.2",
+    "husky": "^8.0.3",
+    "kolorist": "^1.8.0",
+    "lint-staged": "^13.2.2",
+    "minimist": "^1.2.8",
+    "npm-run-all": "^4.1.5",
+    "rome": "^12.0.0",
+    "prompts": "^2.4.2",
+    "zx": "^4.3.0"
+  }
+}
