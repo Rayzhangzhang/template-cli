@@ -42,7 +42,7 @@ function emptyDir(dir) {
   );
 }
 
-const banner = '创建 template ～';
+const banner = '创建 template ～ ～ ～';
 
 const init = async () => {
   console.log();

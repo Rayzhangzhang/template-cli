@@ -4,12 +4,11 @@
   "description": "create-my-template",
   "type": "module",
   "bin": {
-    "create-my-template": "build/cli.cjs",
-    "create-my-template-local": "build/cli-local.cjs"
+    "create-my-template": "build/cli.cjs"
   },
   "files": [
     "build/cli.cjs",
-    "template"
+    "build/template"
   ],
   "repository": {
     "type": "git",
@@ -51,5 +50,8 @@
     "picocolors": "^1.0.0",
     "rome": "^12.0.0",
     "zx": "^7.2.2"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
   }
 }

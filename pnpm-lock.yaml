@@ -1,5 +1,10 @@
 lockfileVersion: '6.0'
 
+dependencies:
+  fs-extra:
+    specifier: ^11.1.1
+    version: registry.npmmirror.com/fs-extra@11.1.1
+
 devDependencies:
   '@inquirer/prompts':
     specifier: ^1.0.1
@@ -1202,7 +1207,6 @@ packages:
       graceful-fs: registry.npmmirror.com/graceful-fs@4.2.11
       jsonfile: registry.npmmirror.com/jsonfile@6.1.0
       universalify: registry.npmmirror.com/universalify@2.0.0
-    dev: true
 
   registry.npmmirror.com/function-bind@1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/function-bind/-/function-bind-1.1.1.tgz}
@@ -1305,7 +1309,6 @@ packages:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/-/graceful-fs-4.2.11.tgz}
     name: graceful-fs
     version: 4.2.11
-    dev: true
 
   registry.npmmirror.com/gradient-string@2.0.2:
     resolution: {integrity: sha512-rEDCuqUQ4tbD78TpzsMtt5OIf0cBCSDWSJtUDaF6JsAh+k0v9r++NzxNEG87oDZx9ZwGhD8DaezR2L/yrw0Jdw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/gradient-string/-/gradient-string-2.0.2.tgz}
@@ -1634,7 +1637,6 @@ packages:
       universalify: registry.npmmirror.com/universalify@2.0.0
     optionalDependencies:
       graceful-fs: registry.npmmirror.com/graceful-fs@4.2.11
-    dev: true
 
   registry.npmmirror.com/lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lilconfig/-/lilconfig-2.1.0.tgz}
@@ -2520,7 +2522,6 @@ packages:
     name: universalify
     version: 2.0.0
     engines: {node: '>= 10.0.0'}
-    dev: true
 
   registry.npmmirror.com/validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/validate-npm-package-license/-/validate-npm-package-license-3.0.4.tgz}
