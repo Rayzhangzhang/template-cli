@@ -5,8 +5,12 @@
   "type": "module",
   "bin": {
     "create-my-template": "build/cli.cjs",
-    "create-my-template-local": "build/cli.cjs"
+    "create-my-template-local": "build/cli-local.cjs"
   },
+  "files": [
+    "build/cli.cjs",
+    "template"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Rayzhangzhang/template-cli.git"
@@ -15,6 +19,7 @@
     "prepare": "husky install",
     "format": "rome format . --write",
     "build": "zx ./src/scripts/build.mjs",
+    "watch": "zx ./src/scripts/watch.mjs",
     "snapshot": "zx ./src/scripts/snapshot.mjs",
     "pretest": "run-s build snapshot",
     "test": "zx ./src/scripts/test.mjs",

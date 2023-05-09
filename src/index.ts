@@ -6,12 +6,18 @@ import path from 'node:path';
 import gradient from 'gradient-string';
 import minimist from 'minimist';
 import { red } from 'picocolors';
+import { postOrderDirectoryTraverse } from './utils/directoryTraverse';
+import renderTemplate from './utils/renderTemplate';
+
+type Formatter = 'rome' | 'prettier' | 'null';
+type GenerationTools = 'vite' | 'webpack5';
+type Framework = 'react16' | 'react18' | 'vue2' | 'vue3';
 
 function canSkipEmptying(dir: string) {
   if (!fs.existsSync(dir)) {
     return true;
   }
-
+  // TODO readdirSync ？
   const files = fs.readdirSync(dir);
   if (files.length === 0) {
     return true;
@@ -21,6 +27,19 @@ function canSkipEmptying(dir: string) {
   }
 
   return false;
+}
+
+function emptyDir(dir) {
+  if (!fs.existsSync(dir)) {
+    return;
+  }
+
+  postOrderDirectoryTraverse(
+    dir,
+    (dir) => fs.rmdirSync(dir),
+    // TODO unlinkSync ?
+    (file) => fs.unlinkSync(file),
+  );
 }
 
 const banner = '创建 template ～';
@@ -41,7 +60,14 @@ const init = async () => {
   // 强制覆盖 --force
   const forceOverwrite = argv.force;
 
-  let result;
+  let result: Partial<{
+    projectName: string;
+    isRewrite: boolean;
+    framework: Framework;
+    generationTools: GenerationTools;
+    codeFormatter: Formatter;
+    needsEslint: boolean;
+  }> = {};
   try {
     const projectName = !targetDir
       ? await input({
@@ -77,7 +103,7 @@ const init = async () => {
       result = {
         projectName,
         isRewrite: true,
-        framework: await select({
+        framework: (await select({
           message: 'framework:',
           choices: [
             { name: 'react18', value: 'react18' },
@@ -91,22 +117,22 @@ const init = async () => {
               value: 'vue2',
             },
           ],
-        }),
-        generationTools: await select({
+        })) as Framework,
+        generationTools: (await select({
           message: 'generation tools:',
           choices: [
             { name: 'vite', value: 'vite' },
             { name: 'webpack5', value: 'webpack5' },
           ],
-        }),
-        codeFormatter: await select({
+        })) as GenerationTools,
+        codeFormatter: (await select({
           message: 'code formatter:',
           choices: [
             { name: 'rome', value: 'rome' },
             { name: 'prettier', value: 'prettier' },
             { name: 'no need', value: 'null' },
           ],
-        }),
+        })) as Formatter,
         needsEslint: await confirm({
           message: 'needs eslint ?',
         }),
@@ -119,9 +145,36 @@ const init = async () => {
 
   console.log(result);
 
+  const { isRewrite, projectName, framework, generationTools, codeFormatter, needsEslint } = result;
+
   const cwd = process.cwd();
   const root = path.join(cwd, targetDir);
   console.log(root);
+
+  if (fs.existsSync(root) && isRewrite) {
+    emptyDir(root);
+  } else if (!fs.existsSync(root)) {
+    fs.mkdirSync(root);
+  }
+
+  console.log(`\nScaffolding project in ${root}...`);
+
+  const pkg = { name: projectName, version: '0.0.0' };
+  fs.writeFileSync(path.resolve(root, 'package.json'), JSON.stringify(pkg, null, 2));
+
+  const templateRoot = path.resolve(__dirname, 'template');
+  const render = function render(templateName) {
+    const templateDir = path.resolve(templateRoot, templateName);
+    renderTemplate(templateDir, root);
+  };
+  // Render base template
+  render('base');
+
+  if (codeFormatter === 'rome') {
+    render('codeFormatter/rome');
+  } else if (codeFormatter === 'prettier') {
+    render('codeFormatter/prettier');
+  }
 };
 
 init().catch((e) => {
