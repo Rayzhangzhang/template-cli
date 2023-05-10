@@ -1,0 +1,10 @@
+{
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,es,cjs,mjs}": [
+      "eslint --cache --fix --no-error-on-unmatched-pattern --ignore-path .gitignore"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^8.39.0"
+  }
+}

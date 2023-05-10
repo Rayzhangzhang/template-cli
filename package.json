@@ -22,7 +22,8 @@
     "snapshot": "zx ./src/scripts/snapshot.mjs",
     "pretest": "run-s build snapshot",
     "test": "zx ./src/scripts/test.mjs",
-    "prepublishOnly": "zx ./src/scripts/prepublish.mjs"
+    "prepublishOnly": "zx ./src/scripts/prepublish.mjs",
+    "fmt": "rome format . --write"
   },
   "lint-staged": {
     "*.{ts,cjs,mjs}": [

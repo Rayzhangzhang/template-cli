@@ -1,0 +1,30 @@
+module.exports = {
+  rules: {
+    quotes: ['error', 'single', { avoidEscape: true }],
+    'no-unneeded-ternary': ['error', { defaultAssignment: false }],
+    'object-shorthand': ['error', 'always'],
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft', 'state', 'acc'] }],
+    'import/prefer-default-export': 'off',
+    'arrow-body-style': 'off',
+    'max-len': ['warn', { code: 160 }],
+    'no-nested-ternary': 'off',
+    'no-unused-vars': 'off',
+    'import/no-named-as-default': 'off',
+    'import/no-named-as-default-member': 'off',
+    'no-console': 'error',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-unused-vars': [2, { argsIgnorePattern: '^_', varsIgnorePattern: '^ignored?$' }],
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/consistent-type-assertions': [0, { objectLiteralTypeAssertions: 'allow-as-parameter' }],
+    '@typescript-eslint/restrict-plus-operands': 'off',
+    '@typescript-eslint/no-unused-expressions': [
+      0,
+      {
+        allowShortCircuit: true,
+        allowTernary: true,
+      },
+    ],
+  },
+};
