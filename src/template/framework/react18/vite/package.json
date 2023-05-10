@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "vite": "^4.3.5",
+    "@vitejs/plugin-react": "^4.0.0"
+  }
+}
