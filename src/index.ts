@@ -44,6 +44,11 @@ function emptyDir(dir) {
 
 const banner = '创建 template ～ ～ ～';
 
+// TODO: tsConfig.json
+// TODO: package.json
+// TODO: eslint rule
+// TODO: fs path
+
 const init = async () => {
   console.log();
   console.log(process.stdout.isTTY && process.stdout.getColorDepth() > 8 ? gradient('cyan', 'pink')(banner) : banner);
@@ -178,6 +183,23 @@ const init = async () => {
     }
   }
 
+  switch (framework) {
+    case 'react17':
+      renderFrameWork('react17');
+      break;
+    case 'react18':
+      renderFrameWork('react18');
+      break;
+    case 'vue2':
+      renderFrameWork('vue2');
+      break;
+    case 'vue3':
+      renderFrameWork('vue3');
+      break;
+    default: {
+    }
+  }
+
   if (codeFormatter === 'rome') {
     render('codeFormatter/rome');
   } else if (codeFormatter === 'prettier') {
@@ -186,19 +208,6 @@ const init = async () => {
 
   if (needsEslint) {
     render('eslint');
-  }
-
-  switch (framework) {
-    case 'react17':
-      renderFrameWork('react17');
-    case 'react18':
-      renderFrameWork('react18');
-    case 'vue2':
-      renderFrameWork('vue2');
-    case 'vue3':
-      renderFrameWork('vue3');
-    default: {
-    }
   }
 };
 

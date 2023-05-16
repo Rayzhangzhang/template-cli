@@ -4,6 +4,9 @@ dependencies:
   fs-extra:
     specifier: ^11.1.1
     version: registry.npmmirror.com/fs-extra@11.1.1
+  typescript:
+    specifier: ^5.0.4
+    version: registry.npmmirror.com/typescript@5.0.4
 
 devDependencies:
   '@inquirer/prompts':
@@ -2504,7 +2507,6 @@ packages:
     version: 5.0.4
     engines: {node: '>=12.20'}
     hasBin: true
-    dev: true
 
   registry.npmmirror.com/unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/unbox-primitive/-/unbox-primitive-1.0.2.tgz}
