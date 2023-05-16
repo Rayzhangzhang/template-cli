@@ -15,6 +15,7 @@ const build = async () => {
 };
 
 try {
+  await fsextra.removeSync('build');
   await build();
 } catch (e) {
   console.error(e);

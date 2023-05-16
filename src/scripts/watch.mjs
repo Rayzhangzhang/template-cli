@@ -18,6 +18,7 @@ const watch = async () => {
 };
 
 try {
+  await fsextra.removeSync('build');
   await watch();
   console.log(process.stdout.isTTY && process.stdout.getColorDepth() > 8 ? gradient('cyan', 'pink')('on watching ~') : 'on watching ~');
 } catch (e) {

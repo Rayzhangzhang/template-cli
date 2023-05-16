@@ -170,6 +170,14 @@ const init = async () => {
   // Render base template
   render('base');
 
+  function renderFrameWork(framework) {
+    if (generationTools === 'vite') {
+      render(`framework/${framework}/vite`);
+    } else if (generationTools === 'webpack5') {
+      render(`framework/${framework}/webpack5`);
+    }
+  }
+
   if (codeFormatter === 'rome') {
     render('codeFormatter/rome');
   } else if (codeFormatter === 'prettier') {
@@ -178,14 +186,6 @@ const init = async () => {
 
   if (needsEslint) {
     render('eslint');
-  }
-
-  function renderFrameWork(framework) {
-    if (generationTools === 'vite') {
-      render(`framework/${framework}/vite`);
-    } else if (generationTools === 'webpack5') {
-      render(`framework/${framework}/webpack5`);
-    }
   }
 
   switch (framework) {
