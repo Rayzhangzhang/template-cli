@@ -11,8 +11,7 @@ import renderTemplate from './utils/renderTemplate';
 
 type Formatter = 'rome' | 'prettier' | 'null';
 type GenerationTools = 'vite' | 'webpack5';
-type Framework = 'react16' | 'react18' | 'vue2' | 'vue3';
-
+type Framework = 'react17' | 'react18' | 'vue2' | 'vue3';
 
 function canSkipEmptying(dir: string) {
   if (!fs.existsSync(dir)) {
@@ -108,7 +107,7 @@ const init = async () => {
           message: 'framework:',
           choices: [
             { name: 'react18', value: 'react18' },
-            { name: 'react16', value: 'react16' },
+            { name: 'react17', value: 'react17' },
             {
               name: 'vue3',
               value: 'vue3',
@@ -170,7 +169,6 @@ const init = async () => {
   };
   // Render base template
   render('base');
-  
 
   if (codeFormatter === 'rome') {
     render('codeFormatter/rome');
@@ -179,29 +177,29 @@ const init = async () => {
   }
 
   if (needsEslint) {
-    render('eslint')
+    render('eslint');
   }
-  
-  function renderFrameWork (framework) {
+
+  function renderFrameWork(framework) {
     if (generationTools === 'vite') {
-      render(`framework/${framework}/vite`)
+      render(`framework/${framework}/vite`);
     } else if (generationTools === 'webpack5') {
-      render(`framework/${framework}/webpack5`)
+      render(`framework/${framework}/webpack5`);
     }
   }
 
   switch (framework) {
-    case 'react16': 
-      renderFrameWork('react16')
+    case 'react17':
+      renderFrameWork('react17');
     case 'react18':
-      renderFrameWork('react18')
+      renderFrameWork('react18');
     case 'vue2':
-      renderFrameWork('vue2')
+      renderFrameWork('vue2');
     case 'vue3':
-      renderFrameWork('vue3')
-    default: {}
+      renderFrameWork('vue3');
+    default: {
+    }
   }
-
 };
 
 init().catch((e) => {
