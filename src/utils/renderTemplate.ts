@@ -17,12 +17,12 @@ function renderTemplate(src, dest) {
   const stats = fs.statSync(src);
 
   if (stats.isDirectory()) {
-    // skip node_module
+    // skip node_module basename 返回最后一层的路径名
     if (path.basename(src) === 'node_modules') {
       return;
     }
 
-    // if it's a directory, render its subdirectories and files recursively
+    // if it's a directory, render its subdirectories and files recursively，recursive 即 递归创建
     fs.mkdirSync(dest, { recursive: true });
     for (const file of fs.readdirSync(src)) {
       renderTemplate(path.resolve(src, file), path.resolve(dest, file));
@@ -32,6 +32,7 @@ function renderTemplate(src, dest) {
 
   const filename = path.basename(src);
 
+  // 合并 package.json
   if (filename === 'package.json' && fs.existsSync(dest)) {
     // merge instead of overwriting
     const existing = JSON.parse(fs.readFileSync(dest, 'utf8'));
@@ -51,7 +52,7 @@ function renderTemplate(src, dest) {
   }
 
   if (filename.startsWith('_')) {
-    // rename `_file` to `.file`
+    // rename `_file` to `.file` 如 _gitignore
     dest = path.resolve(path.dirname(dest), filename.replace(/^_/, '.'));
   }
 
@@ -62,7 +63,7 @@ function renderTemplate(src, dest) {
     fs.writeFileSync(dest, existing + '\n' + newGitignore);
     return;
   }
-
+  // 复制 默认覆盖
   fs.copyFileSync(src, dest);
 }
 

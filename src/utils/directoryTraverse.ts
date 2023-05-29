@@ -2,6 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 export function preOrderDirectoryTraverse(dir, dirCallback, fileCallback) {
+  // readdirSync 读取文件夹内容
   for (const filename of fs.readdirSync(dir)) {
     if (filename === '.git') {
       continue;
@@ -25,7 +26,7 @@ export function postOrderDirectoryTraverse(dir, dirCallback, fileCallback) {
       continue;
     }
     const fullpath = path.resolve(dir, filename);
-    // TODO lstatSync ?
+    // lstatSync 获取文件信息 不解析符号链接（statSync 解析）， 判断是否是文件夹
     if (fs.lstatSync(fullpath).isDirectory()) {
       postOrderDirectoryTraverse(fullpath, dirCallback, fileCallback);
       dirCallback(fullpath);

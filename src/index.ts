@@ -36,8 +36,9 @@ function emptyDir(dir) {
 
   postOrderDirectoryTraverse(
     dir,
+    // 删除文件夹
     (dir) => fs.rmdirSync(dir),
-    // TODO unlinkSync ?
+    // unlinkSync 删除文件、符号链接
     (file) => fs.unlinkSync(file),
   );
 }
@@ -54,8 +55,9 @@ const init = async () => {
   console.log(process.stdout.isTTY && process.stdout.getColorDepth() > 8 ? gradient('cyan', 'pink')(banner) : banner);
   console.log();
 
+  // 用于解析命令
   const argv = minimist(process.argv.slice(2), {
-    // all arguments are treated as booleans
+    // all arguments are treated as booleans 即 所有以 -- 开头的参数都会被解析成boolean
     boolean: true,
   });
 
